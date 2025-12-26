@@ -1,10 +1,6 @@
 {
   "name": "be-1",
   "version": "1.0.0",
-  "homepage": "https://github.com/sandgarofalo/be-1#readme",
-  "bugs": {
-    "url": "https://github.com/sandgarofalo/be-1/issues"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sandgarofalo/be-1.git"
