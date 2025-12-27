@@ -1,17 +1,39 @@
 import express from "express";
-import data from "../static/users.json";
+
+interface User {
+  id: number;
+  name: string;
+  dob: Date;
+}
+
+const inMemoryListOfUsers: User[] = [];
 
 const app = express();
 
-// respond with "hello world" when a GET request is made to the homepage
-app.get("/", (req, res) => {
-  res.send({ name: "testuser" });
+app.get("/users", (_, res) => {
+  res.json(inMemoryListOfUsers);
 });
 
-app.get("/users", (req, res) => {
-  res.send(data);
+app.post("/users", (req, res) => {
+  if (
+    !req.body ||
+    !("id" in req.body) ||
+    typeof req.body.id !== "number" ||
+    !("name" in req.body) ||
+    typeof req.body.name !== "string" ||
+    !("dob" in req.body) ||
+    new Date(req.body.dob) === null
+  ) {
+    res.status(400);
+    res.send("non-standard request body");
+  } else {
+    const requestBody: User = req.body;
+    inMemoryListOfUsers.push(requestBody);
+  }
 });
 
-app.listen(3000, () => {
-  console.log(`Example app listening on port ${3000}`);
+const port = 3000;
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
 });
