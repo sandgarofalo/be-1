@@ -13,7 +13,7 @@ export function readUsers(): User[] {
 
 export function createUser(id: number, name: string, dob: Date): void {
   if (users.some((user) => user.id === id)) {
-    throw new InputError("an user with the same 'id' already exists");
+    throw new InputError("a user with the same 'id' already exists");
   }
 
   users.push({ id, name, dob });
