@@ -11,7 +11,7 @@
   "exports": "./dist/index.mjs",
   "scripts": {
     "build:dev": "pkgroll",
-    "build:prod": "pkgroll --minify",
+    "build": "pkgroll --minify",
     "dev": "tsx ./src/index.ts",
     "dev:watch": "tsx watch ./src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
