@@ -30,6 +30,7 @@ app.post("/users", (req, res) => {
   } else {
     createUser(requestBody.id, requestBody.name, requestBody.dob);
     res.status(204);
+    res.send();
   }
 });
 
