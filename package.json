@@ -13,7 +13,8 @@
     "build:dev": "pkgroll",
     "build": "pkgroll --minify",
     "dev": "tsx ./src/index.ts",
-    "dev:watch": "tsx watch ./src/index.ts"
+    "dev:watch": "tsx watch ./src/index.ts",
+    "start": "node ./dist/index.mjs"
   },
   "devDependencies": {
     "@tsconfig/node24": "^24.0.3",
