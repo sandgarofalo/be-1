@@ -1,4 +1,4 @@
-import { User } from "../types/user";
+import { User } from "../types/user.js";
 
 export function isUser(data: unknown): data is User {
   return (

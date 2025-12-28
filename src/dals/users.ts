@@ -1,5 +1,5 @@
-import { InputError } from "../types/errors/input-error";
-import { User } from "../types/user";
+import { InputError } from "../types/errors/input-error.js";
+import { User } from "../types/user.js";
 
 const users: User[] = [];
 

@@ -1,8 +1,8 @@
 import express, { ErrorRequestHandler } from "express";
 // Project
-import { createUser, readUser, readUsers } from "./dals/users";
-import { InputError } from "./types/errors/input-error";
-import { isUser } from "./utils/user-utils";
+import { createUser, readUser, readUsers } from "./dals/users.js";
+import { InputError } from "./types/errors/input-error.js";
+import { isUser } from "./utils/user-utils.js";
 
 const app = express()
   .use(express.json())
