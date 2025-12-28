@@ -26,5 +26,9 @@
   },
   "dependencies": {
     "express": "^5.2.1"
-  }
+  },
+  "engines": {
+    "node": "24.4.1"
+  },
+  "engineStrict": true
 }
