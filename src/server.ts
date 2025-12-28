@@ -1,34 +1,33 @@
 import express from "express";
-
-interface User {
-  id: number;
-  name: string;
-  dob: Date;
-}
-
-const inMemoryListOfUsers: User[] = [];
+// Project
+import { createUser, readUser, readUsers } from "./dals/users";
+import { InputError } from "./types/errors/input-error";
+import { isUser } from "./utils/user-utils";
 
 const app = express();
 
+app.get("/users/:userId", (req, res) => {
+  const userId = Number.parseInt(req.params.userId);
+
+  if (Number.isNaN(userId)) {
+    throw new InputError("non-numeric user id parameter passed");
+  }
+
+  res.json(readUser(userId));
+});
+
 app.get("/users", (_, res) => {
-  res.json(inMemoryListOfUsers);
+  res.json(readUsers());
 });
 
 app.post("/users", (req, res) => {
-  if (
-    !req.body ||
-    !("id" in req.body) ||
-    typeof req.body.id !== "number" ||
-    !("name" in req.body) ||
-    typeof req.body.name !== "string" ||
-    !("dob" in req.body) ||
-    new Date(req.body.dob) === null
-  ) {
-    res.status(400);
-    res.send("non-standard request body");
+  const requestBody: unknown = req.body;
+
+  if (!isUser(requestBody)) {
+    res.status(400).send("non-standard request body");
   } else {
-    const requestBody: User = req.body;
-    inMemoryListOfUsers.push(requestBody);
+    createUser(requestBody.id, requestBody.name, requestBody.dob);
+    res.status(204);
   }
 });
 
