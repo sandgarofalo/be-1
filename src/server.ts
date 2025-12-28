@@ -1,4 +1,4 @@
-import express from "express";
+import express, { ErrorRequestHandler } from "express";
 // Project
 import { createUser, readUser, readUsers } from "./dals/users";
 import { InputError } from "./types/errors/input-error";
@@ -33,6 +33,22 @@ app.post("/users", (req, res) => {
     res.send();
   }
 });
+
+const errorHandler: ErrorRequestHandler = (err, _, res, next) => {
+  if (res.headersSent) {
+    return next(err);
+  }
+
+  if (err instanceof InputError) {
+    res.status(400).send(err.message);
+    return next();
+  }
+
+  res.status(500);
+  res.render("error", { error: err });
+};
+
+app.use(errorHandler);
 
 const port = 3000;
 
