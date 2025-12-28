@@ -4,7 +4,9 @@ import { createUser, readUser, readUsers } from "./dals/users";
 import { InputError } from "./types/errors/input-error";
 import { isUser } from "./utils/user-utils";
 
-const app = express();
+const app = express()
+  .use(express.json())
+  .use(express.urlencoded({ extended: true }));
 
 app.get("/users/:userId", (req, res) => {
   const userId = Number.parseInt(req.params.userId);
