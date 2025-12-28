@@ -6,7 +6,7 @@
     "url": "git+https://github.com/sandgarofalo/be-1.git"
   },
   "license": "ISC",
-  "author": "",
+  "author": "sand.garofalo@outlook.com",
   "type": "module",
   "exports": "./dist/index.mjs",
   "scripts": {
