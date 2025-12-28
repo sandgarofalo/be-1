@@ -13,8 +13,7 @@
     "build:dev": "pkgroll",
     "build": "pkgroll --minify",
     "dev": "tsx ./src/index.ts",
-    "dev:watch": "tsx watch ./src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev:watch": "tsx watch ./src/index.ts"
   },
   "devDependencies": {
     "@tsconfig/node24": "^24.0.3",
