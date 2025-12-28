@@ -8,16 +8,21 @@
   "license": "ISC",
   "author": "",
   "type": "module",
+  "exports": "./dist/index.mjs",
   "scripts": {
-    "dev": "tsx ./src/server.ts",
-    "dev:watch": "tsx watch ./src/server.ts",
+    "build:dev": "pkgroll",
+    "build:prod": "pkgroll --minify",
+    "dev": "tsx ./src/index.ts",
+    "dev:watch": "tsx watch ./src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "@types/node": "^25.0.3",
+    "@tsconfig/node24": "^24.0.3",
+    "@types/express": "^5.0.6",
+    "@types/node": "~24.4.0",
+    "pkgroll": "^2.21.4",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3",
-    "@types/express": "^5.0.6"
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "express": "^5.2.1"
