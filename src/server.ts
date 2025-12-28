@@ -35,6 +35,8 @@ app.post("/users", (req, res) => {
 });
 
 const errorHandler: ErrorRequestHandler = (err, _, res, next) => {
+  console.log(err);
+
   if (res.headersSent) {
     return next(err);
   }
