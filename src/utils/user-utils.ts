@@ -1,3 +1,5 @@
+import { User } from "../types/user";
+
 export function isUser(data: unknown): data is User {
   return (
     !!data &&
@@ -7,7 +9,8 @@ export function isUser(data: unknown): data is User {
     "name" in data &&
     typeof data.name === "string" &&
     "dob" in data &&
-    data.dob instanceof Date &&
+    typeof data.dob === "string" &&
+    new Date(data.dob) !== null &&
     Object.keys(data).length === 3
   );
 }

@@ -1,4 +1,5 @@
 import { InputError } from "../types/errors/input-error";
+import { User } from "../types/user";
 
 const users: User[] = [];
 
