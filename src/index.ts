@@ -26,7 +26,7 @@ app.post("/users", (req, res) => {
   const requestBody: unknown = req.body;
 
   if (!isUser(requestBody)) {
-    res.status(400).send("non-standard request body");
+    res.status(400).send("malformed request body");
   } else {
     createUser(requestBody.id, requestBody.name, requestBody.dob);
     res.status(204);
