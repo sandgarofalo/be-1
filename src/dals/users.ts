@@ -1,4 +1,5 @@
 import { InputError } from "../types/errors/input-error.js";
+import { NotFoundError } from "../types/errors/not-found-error.js";
 import { User } from "../types/user.js";
 
 const users: User[] = [];
@@ -17,4 +18,14 @@ export function createUser(id: number, name: string, dob: Date): void {
   }
 
   users.push({ id, name, dob });
+}
+
+export function deleteUser(id: number) {
+  const userIndex = users.findIndex((user) => user.id === id);
+
+  if (userIndex === -1) {
+    throw new NotFoundError("no user found for given id");
+  }
+
+  users.splice(userIndex, 1);
 }

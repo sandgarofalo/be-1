@@ -1,8 +1,9 @@
 import express, { ErrorRequestHandler } from "express";
 // Project
-import { createUser, readUser, readUsers } from "./dals/users.js";
+import { createUser, deleteUser, readUser, readUsers } from "./dals/users.js";
 import { InputError } from "./types/errors/input-error.js";
 import { isUser } from "./utils/user-utils.js";
+import { NotFoundError } from "./types/errors/not-found-error.js";
 
 const app = express()
   .use(express.json())
@@ -34,6 +35,17 @@ app.post("/users", (req, res) => {
   }
 });
 
+app.delete("/users/:userId", (req, res) => {
+  const userId = Number.parseInt(req.params.userId);
+
+  if (Number.isNaN(userId)) {
+    throw new InputError("non-numeric user id parameter passed");
+  }
+
+  deleteUser(userId);
+  res.status(204).send();
+});
+
 const errorHandler: ErrorRequestHandler = (err, _, res, next) => {
   console.log(err);
 
@@ -43,6 +55,11 @@ const errorHandler: ErrorRequestHandler = (err, _, res, next) => {
 
   if (err instanceof InputError) {
     res.status(400).send(err.message);
+    return next();
+  }
+
+  if (err instanceof NotFoundError) {
+    res.status(404).send(err.message);
     return next();
   }
 
