@@ -10,8 +10,7 @@
   "type": "module",
   "exports": "./dist/index.mjs",
   "scripts": {
-    "build:dev": "pkgroll",
-    "build": "pkgroll --minify",
+    "build": "esbuild ./src/index.ts --bundle --platform=node --target=node24.4.1 --outfile=dist/index.mjs --packages=external",
     "dev": "tsx ./src/index.ts",
     "dev:watch": "tsx watch ./src/index.ts",
     "start": "node ./dist/index.mjs"
@@ -20,9 +19,9 @@
     "@tsconfig/node24": "^24.0.4",
     "@types/express": "^5.0.6",
     "@types/node": "~24.4.0",
-    "pkgroll": "^2.25.2",
+    "esbuild": "^0.27.3",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.0-beta"
   },
   "dependencies": {
     "express": "^5.2.1"
